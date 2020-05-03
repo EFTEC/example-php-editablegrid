@@ -3,7 +3,7 @@ It is an example of an inline editable grid, using PHP and MySQL
 
 ![](docs/final.jpg)
 
-This example uses jQuery, Ajax and a library called Gijgo 
+This example uses jQuery, Ajax and a library called Gijgo ( [https://github.com/atatanasov/gijgo](https://github.com/atatanasov/gijgo)  All of them are for free)
 
 
 
@@ -56,7 +56,7 @@ Package operations: 2 installs, 0 updates, 0 removals
 
 ```
 
-We will also add the next libraries **eftec/bladeone** and **eftec/pdoone**.  (template and database)
+We will also add the next libraries **[eftec/bladeone](https://www.github.com/eftec/bladeone)**  and **[eftec/pdoone](https://www.github.com/eftec/pdoone)**.  (for template and database)
 
 
 
