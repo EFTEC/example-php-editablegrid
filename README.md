@@ -1,4 +1,4 @@
-# Example PHP Inline Editable Grid with Mysql
+# Example PHP Inline Editable Grid with MySQL
 It is an example of an inline editable grid, using PHP and MySQL
 
 ![](docs/final.jpg)
@@ -56,13 +56,13 @@ Package operations: 2 installs, 0 updates, 0 removals
 
 ```
 
-We will also use the next libraries **eftec/bladeone** and **eftec/pdoone**.
+We will also add the next libraries **eftec/bladeone** and **eftec/pdoone**.  (template and database)
 
 
 
 ## 2 Creating tables
 
-We need to create two tables on MySQL
+We need to create two tables on MySQL. The case of the column matters.   
 
 ### Country
 
@@ -105,6 +105,12 @@ CREATE TABLE `players` (
 
 
 
+And a foreign key (table players)
+
+![](docs/players_fk.jpg)
+
+
+
 ## 3 Adding Data to the table
 
 ### Data to Country
@@ -132,11 +138,13 @@ INSERT INTO `players` (`ID`, `Name`, `IdCounty`, `IsActive`) VALUES ('4', 'Franc
 
 The repository layer is classes that have functions to access the database, for example, insert,update, etc.
 
-We want to create it automatically as follow.
+The library PdoOne allows to create the repository layer using the database.
 
 Let's create this PHP file (in the root of the project)
 
-```
+📄/genrepo.php
+
+```php
 <?php
 
 use eftec\PdoOne;
@@ -152,7 +160,7 @@ where 127.0.0.1 is the server, root = user, abc.123 = password and example_edita
 
 **loglevel**=3 is if something goes south then it will show the error.
 
-And renders shows the next screen:
+And renders shows the next screen: (open the page to show this page)
 
 ![](docs/ide.jpg)
 
@@ -162,7 +170,7 @@ Add the next information.  Where it says "**input**", select the name of the tab
 
 For output, selects the option "**classcode**". It will generate our class.
 
-Press generate and copy the result (is in **log**)
+Press generate and copy the result (is generated in **log** text area)
 
 It will generate the next code
 
@@ -185,6 +193,10 @@ class CountryRepo extends _BasePdoOneRepo
 Copy this code and save in a folder (in my case I will use the folder **repo**)
 
 Repeats the same procedure with all the tables.
+
+📄 repo/CountryRepo.php
+
+📄 repo/PlayersRepo.php
 
 ## 5 Views
 
@@ -302,9 +314,7 @@ echo $blade->run('table',[]);
 
 :-|
 
-![](docs/notfound.jpg)
-
-Ok, it is a start but it misses the web services mentioned in the step 5.
+![](docs/notfound.jpg)Ok, it is a start but it misses the web services mentioned in the step 5.
 
 ## 8 Creating web service.
 
@@ -434,10 +444,10 @@ Listing the countries. We use the class **CountryRepo**. We could also sort, pag
 $result = CountryRepo::toList(); // select * from country
 ```
 
-Listing the players. We need a custom query so we create directly (without the Repository layer). It is because we need all the columns of players but also the name of the country.
+Listing the players. We need a custom query so we create it directly (without the Repository class). It is because we need all the columns of players but also the name of the country.
 
 ```php
-        $r['records'] = $pdoOne->select('ID,Players.Name,Country.Name as CountryName,IsActive')->from('Players')
+$r['records'] = $pdoOne->select('ID,Players.Name,Country.Name as CountryName,IsActive')->from('Players')
                                ->left('Country on Players.IdCounty=Country.IdCounty')->toList();
 ```
 ### 8.4 Update and delete
@@ -456,3 +466,6 @@ Execute the same page than step 7 and it is the final result. If something fails
 
 ![](docs/final.jpg)
 
+## 10 Final step
+
+:-)
