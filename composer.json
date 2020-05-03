@@ -1,0 +1,16 @@
+{
+    "name": "eftec/example-php-editablegrid",
+    "description": "It is an tutorial to create an editable grid with php and mysql",
+    "type": "project",
+    "require": {
+        "eftec/bladeone": "^3.43",
+        "eftec/pdoone": "^1.37"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jorge Castro",
+            "email": "jorge.castro.c@gmail.com"
+        }
+    ]
+}
