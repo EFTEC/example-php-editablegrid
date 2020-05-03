@@ -312,9 +312,15 @@ echo $blade->run('table',[]);
 
 ## 7 And let's run
 
-:-|
 
-![](docs/notfound.jpg)Ok, it is a start but it misses the web services mentioned in the step 5.
+
+![](docs/notfound.jpg)
+
+![](docs/meh.jpg)
+
+
+
+Ok, it is a start but it misses the web services mentioned in the step 5.
 
 ## 8 Creating web service.
 
