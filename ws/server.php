@@ -60,14 +60,20 @@ switch ($action) {
         break;
     case 'get':
         $r=[];
+        $page=isset($_GET['page']) ? $_GET['page'] : 1;
+        $limit=isset($_GET['limit']) ? $_GET['limit'] : 5;
+        $rowInit=($limit*($page-1));
         try {
-            $r['records'] = $pdoOne->select('ID,Players.Name,Country.Name as CountryName,IsActive')->from('Players')
+            $result['records'] = $pdoOne->select('ID,Players.Name,Country.Name as CountryName,IsActive')
+                                    ->limit("$rowInit,$limit")
+                                   ->from('Players')
                                    ->left('Country on Players.IdCounty=Country.IdCounty')->toList();
+            $result['total']=count($result['records']);
         } catch (Exception $e) {
             $result=['result'=>false,'message'=>$e->getMessage()];
         }
-        $r['total']=count($r['records']);
-        echo json_encode($r);
+        
+        echo json_encode($result);
         break;
     case 'countries':
         try {
